@@ -19,8 +19,7 @@ app.set('views',path.join(__dirname,'./views'));
 
 
 app.post('/',(req,res)=>{
-
-// Or just: import 'cross-fetch/polyfill';
+  // Or just: import 'cross-fetch/polyfill';
 const url = 'http://44.202.243.116/player/auth/'+ req.body.login + "/" + req.body.password;
 fetch(url)
   .then(res => {
@@ -30,23 +29,18 @@ fetch(url)
     return res.json();
   })
   .then(user => {
-    console.log(user.username);
-    if (user.username != null) {
+ 
+      if (user.username != req.login) {
         console.log("Olá")
         req.session.login = login
         res.render('panel-user');
-    }else{
-        res.render('index');
-    }
+      }
   })
   .catch(err => {
-    console.error(err);
+    res.render('index');
   });
-
-    
-   
-
 });
+
 
 app.get('/',(req,res)=>{
 

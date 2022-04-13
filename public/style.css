@@ -53,6 +53,12 @@ body{
     flex-direction  :   row;
     align-items     :   center;
     justify-content :   center;
+    text-align: center;
+}
+
+#login-space p {
+    color: red;
+    display: none;
 }
 
 .InputField{
