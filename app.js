@@ -43,13 +43,6 @@ fetch(url)
     console.error(err);
   });
 
-
-    if(req.body.login == login){
-       
-    }else{
-            
-
-    }
     
    
 
