@@ -13,12 +13,13 @@ body{
     height              :   100%;
     display             :   flex;
     flex-direction      :   row;
-    background-image    :   url('./img/BACKGROUND.PNG');
+    background-image    :   url('./img/background.png');
     background-repeat   :   no-repeat;
     align-items         :   center;
     justify-content     :   center;
     min-width           :   100vh;
     min-height          :   100vh;
+    
 }
 .container{
 
@@ -53,7 +54,7 @@ body{
     flex-direction  :   row;
     align-items     :   center;
     justify-content :   center;
-    text-align: center;
+    text-align      :   center;
 }
 
 #login-space p {
