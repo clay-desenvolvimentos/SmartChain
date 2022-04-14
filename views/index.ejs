@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/style.css">
+   
     <title>SmartChain</title>
 </head>
 <body>
@@ -25,7 +26,9 @@
                     </div>
                     
                     <input type="submit" name="acao" value="Login">
-                    <p id="text-fail-login">usuario ou senha incorretos</p>
+                    <% if(error) { %>
+                        <p id="text-fail-login">usuario ou senha incorreta</p>
+                    <% } %>
                 </form>
                 
             </div>

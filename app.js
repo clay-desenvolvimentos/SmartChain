@@ -7,13 +7,14 @@ var fetch = require('cross-fetch');
 const session = require('express-session')
 var path = require('path')
 const res = require('express/lib/response')
-
+const fail = require('./public/js/scripts');
+const ejs = require('ejs')
 var login = "clay";
 
 app.use(session({secret:'ksagksdgijfhwdsoiahfdsghkfhgsdkjhjklsdhbjkl,ersghbl'}))
 app.use(bodyparser.urlencoded({extended:true}))
-app.engine("html",require('ejs').renderFile);
-app.set('view engine','html');
+
+app.set('view engine', 'ejs');
 app.use('/public',express.static(path.join(__dirname,'public')));
 app.set('views',path.join(__dirname,'./views'));
 
@@ -30,27 +31,25 @@ fetch(url)
   })
   .then(user => {
  
-      if (user.username != req.login) {
+      if (user.username == req.login) {
         console.log("Olá")
         req.session.login = login
         res.render('panel-user');
       }
+
+      console.log(user);
   })
   .catch(err => {
-    res.render('index');
+    console.log('ok');
+    res.render('index', {error: true});
   });
 });
-
-
 app.get('/',(req,res)=>{
 
     if (req.session.login) {
         res.render('panel-user');
     }else{
-         res.render('index');    
+         res.render('index', {error: false});    
     }
-
-});
-
-    
+});    
 http.createServer(app).listen(1010)
