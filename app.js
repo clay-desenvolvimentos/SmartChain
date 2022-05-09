@@ -21,17 +21,18 @@ app.set('views',path.join(__dirname,'./views'));
 
 app.post('/',(req,res)=>{
   // Or just: import 'cross-fetch/polyfill';
-const url = 'http://44.202.243.116/player/auth/'+ req.body.login + "/" + req.body.password;
+const url = 'http://44.202.243.116/user/auth/'+ req.body.login + "/" + req.body.password;
 fetch(url)
   .then(res => {
     if (res.status >= 400) {
       throw new Error("Bad response from server");
     }
+    console.log("passei aqui");
     return res.json();
   })
   .then(user => {
- 
-      if (user.username == req.login) {
+      console.log(user.username + " " + req.body)
+      if (user.username == req.body.login) {
         console.log("Olá")
         req.session.login = login
         res.render('panel-user');
@@ -49,7 +50,7 @@ app.get('/',(req,res)=>{
     if (req.session.login) {
         res.render('panel-user');
     }else{
-         res.render('index', {error: false});    
+         res.render('panel-user', {error: false});    
     }
 });    
 http.createServer(app).listen(1010)
